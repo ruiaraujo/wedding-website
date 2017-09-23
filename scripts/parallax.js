@@ -1,20 +1,3 @@
-/**
- * Copyright 2016 Google Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 function initializeParallax(clip) {
   var parallax = clip.querySelectorAll('*[parallax]');
   var parallaxDetails = [];
@@ -23,7 +6,7 @@ function initializeParallax(clip) {
   // Edge requires a transform on the document body and a fixed position element
   // in order for it to properly render the parallax effect as you scroll.
   // See https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5084491/
-  if (getComputedStyle(document.body).transform == 'none')
+  if (getComputedStyle(document.body).transform === 'none')
     document.body.style.transform = 'translateZ(0)';
   var fixedPos = document.createElement('div');
   fixedPos.style.position = 'fixed';
@@ -36,15 +19,15 @@ function initializeParallax(clip) {
   for (var i = 0; i < parallax.length; i++) {
     var elem = parallax[i];
     var container = elem.parentNode;
-    if (getComputedStyle(container).overflow != 'visible') {
+    if (getComputedStyle(container).overflow !== 'visible') {
       console.error('Need non-scrollable container to apply perspective for', elem);
       continue;
     }
-    if (clip && container.parentNode != clip) {
+    if (clip && container.parentNode !== clip) {
       console.warn('Currently we only track a single overflow clip, but elements from multiple clips found.', elem);
     }
     var clip = container.parentNode;
-    if (getComputedStyle(clip).overflow == 'visible') {
+    if (getComputedStyle(clip).overflow === 'visible') {
       console.error('Parent of sticky container should be scrollable element', elem);
     }
     // TODO(flackr): optimize to not redo this for the same clip/container.
@@ -74,7 +57,7 @@ function initializeParallax(clip) {
 
     parallaxDetails.push({'node': parallax[i],
                           'top': parallax[i].offsetTop,
-                          'sticky': !!sticky,
+                          'sticky': sticky,
                           'nextCover': nextCover,
                           'previousCover': previousCover});
   }
@@ -83,19 +66,8 @@ function initializeParallax(clip) {
   // longer be visible.
   clip.addEventListener('scroll', function() {
     for (var i = 0; i < parallaxDetails.length; i++) {
-      var container = parallaxDetails[i].node.parentNode;
-      var previousCover = parallaxDetails[i].previousCover;
-      var nextCover = parallaxDetails[i].nextCover;
-      var parallaxStart = previousCover ? (previousCover.offsetTop + previousCover.offsetHeight) : 0;
-      var parallaxEnd = nextCover ? nextCover.offsetTop : container.offsetHeight;
-      var threshold = 200;
-      var visible = parallaxStart - threshold - clip.clientHeight < clip.scrollTop &&
-                    parallaxEnd + threshold > clip.scrollTop;
-      // FIXME: Repainting the images while scrolling can cause jank.
-      // For now, keep them all.
-      // var display = visible ? 'block' : 'none'
       var display = 'block';
-      if (parallaxDetails[i].node.style.display != display)
+      if (parallaxDetails[i].node.style.display !== display)
         parallaxDetails[i].node.style.display = display;
     }
   });
@@ -117,7 +89,6 @@ function onResize(details) {
 
     var parallaxStart = previousCover ? (previousCover.offsetTop + previousCover.offsetHeight) : 0;
     var scrollbarWidth = details[i].sticky ? 0 : clip.offsetWidth - clip.clientWidth;
-    var parallaxElem = details[i].sticky ? container : clip;
     var height = details[i].node.offsetHeight;
     var depth = 0;
     if (rate) {
