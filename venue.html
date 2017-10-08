@@ -1,240 +1,288 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" />
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro"
-          rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: "BrandonGrotesque";
-            src: url("./fonts/Brandonthin.eot"); /* IE9 Compat Modes */
-            src: url("./fonts/Brandonthin.eot?#iefix") format("embedded-opentype"),
-            url("./fonts/Brandonthin.otf") format("opentype"),
-            url("./fonts/Brandonthin.svg") format("svg"),
-            url("./fonts/Brandonthin.ttf") format("truetype"),
-            url("./fonts/Brandonthin.woff") format("woff"),
-            url("./fonts/Brandonthin.woff2") format("woff2"); /* Modern Browsers */
-            font-weight: 300;
-            font-style: normal;
-        }
+    <head>
+        <meta charset="utf-8">
+        <title>Quando & Onde</title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro"
+              rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: "BrandonGrotesque";
+                src: url("./fonts/Brandonthin.eot"); /* IE9 Compat Modes */
+                src: url("./fonts/Brandonthin.eot?#iefix") format("embedded-opentype"),
+                url("./fonts/Brandonthin.otf") format("opentype"),
+                url("./fonts/Brandonthin.svg") format("svg"),
+                url("./fonts/Brandonthin.ttf") format("truetype"),
+                url("./fonts/Brandonthin.woff") format("woff"),
+                url("./fonts/Brandonthin.woff2") format("woff2"); /* Modern Browsers */
+                font-weight: 300;
+                font-style: normal;
+            }
 
-        @font-face {
-            font-family: "BrandonGrotesque";
-            src: url("./fonts/Brandonreg.eot"); /* IE9 Compat Modes */
-            src: url("./fonts/Brandonreg.eot?#iefix") format("embedded-opentype"),
-            url("./fonts/Brandonreg.otf") format("opentype"),
-            url("./fonts/Brandonreg.svg") format("svg"),
-            url("./fonts/Brandonreg.ttf") format("truetype"),
-            url("./fonts/Brandonreg.woff") format("woff"),
-            url("./fonts/Brandonreg.woff2") format("woff2"); /* Modern Browsers */
-            font-weight: normal;
-            font-style: normal;
-        }
+            @font-face {
+                font-family: "BrandonGrotesque";
+                src: url("./fonts/Brandonreg.eot"); /* IE9 Compat Modes */
+                src: url("./fonts/Brandonreg.eot?#iefix") format("embedded-opentype"),
+                url("./fonts/Brandonreg.otf") format("opentype"),
+                url("./fonts/Brandonreg.svg") format("svg"),
+                url("./fonts/Brandonreg.ttf") format("truetype"),
+                url("./fonts/Brandonreg.woff") format("woff"),
+                url("./fonts/Brandonreg.woff2") format("woff2"); /* Modern Browsers */
+                font-weight: normal;
+                font-style: normal;
+            }
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            overflow: hidden;
-            font-family: "Source Serif Pro", serif;
-            color: white;
-            font-size: 1em;
-            letter-spacing: 1.5px;
-            line-height: 1.5em;
-        }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+                font-family: "Source Serif Pro", serif;
+                color: white;
+                font-size: 1em;
+                letter-spacing: 1.5px;
+                line-height: 1.5em;
+            }
 
-        * {
-            box-sizing: border-box;
-        }
+            * {
+                box-sizing: border-box;
+            }
 
-        h1, h2, h3, h4 {
-            font-family: "BrandonGrotesque", sans-serif;
-        }
+            h1, h2, h3, h4 {
+                font-family: "BrandonGrotesque", sans-serif;
+            }
 
-        h1 {
-            font-size: 80px;
-            font-weight: 300;
-            font-style: normal;
-            letter-spacing: .11em;
-            line-height: 1em;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        h1.porto {
-            font-size: 80px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: 2rem;
-            letter-spacing: -0.35px;
-        }
-
-        .scene {
-            height: 150vh;
-            padding: 5vh 10vw;
-        }
-
-        .parallax {
-            background: no-repeat center;
-            background-size: cover;
-            box-sizing: border-box;
-            width: 100%;
-            height: calc(130vh + 76px);
-            /* Since the parallax elements still consume space, we set the margin to undo
-                     the height of this parallax element making it essentially consume 0 space.
-                  */
-            margin-bottom: calc(-130vh - 76px);
-        }
-
-        .header {
-            height: calc(100vh + 76px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .parallax.header {
-            margin-bottom: calc(-100vh - 76px);
-        }
-
-        p {
-            margin: 1em 0;
-            z-index: 1;
-            position: relative;
-        }
-
-        .viewport {
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .star {
-            height: 90vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        .solid {
-            z-index: 1;
-            position: relative;
-            height: 50vh;
-            color: #333;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            background-color: #fff;
-            padding: 2vh 5vw;
-        }
-
-        .venue-place {
-            padding: 0 5vw;
-            text-align: center;
-        }
-
-        header {
-            font-family: "BrandonGrotesque", sans-serif;
-            font-weight: normal;
-            font-size: 0.75rem;
-            line-height: 1em;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            padding: 1rem 2rem;
-        }
-
-        header a {
-            text-decoration: none;
-            color: rgba(0, 0, 0, 0.68);
-            text-align: center;
-            padding: 1rem;
-            transition: color 150ms ease-in;
-        }
-
-        header:hover a {
-            color: rgba(0, 0, 0, 0.3);
-        }
-
-        header a:hover {
-            color: rgba(0, 0, 0, 0.68) !important;
-        }
-
-        @media screen and (min-width: 768px) {
-
-            header {
-                justify-content: flex-end;
+            h1 {
+                font-size: 80px;
+                font-weight: 300;
+                font-style: normal;
+                letter-spacing: .11em;
+                line-height: 1em;
+                text-align: center;
+                text-transform: uppercase;
             }
 
             h1.porto {
-                font-size: 120px;
+                font-size: 80px;
+                text-transform: uppercase;
             }
-        }
-    </style>
-    <script src="scripts/parallax.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+
+            h2 {
+                font-size: 2rem;
+                letter-spacing: -0.35px;
+            }
+
+            .scene {
+                height: 150vh;
+                padding: 5vh 10vw;
+            }
+
+            .parallax {
+                background: no-repeat center;
+                background-size: cover;
+                box-sizing: border-box;
+                width: 100%;
+                height: calc(130vh + 76px);
+                /* Since the parallax elements still consume space, we set the margin to undo
+                         the height of this parallax element making it essentially consume 0 space.
+                      */
+                margin-bottom: calc(-130vh - 76px);
+            }
+
+            .header {
+                height: calc(100vh + 76px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .parallax.header {
+                margin-bottom: calc(-100vh - 76px);
+            }
+
+            p {
+                margin: 1em 0;
+                z-index: 1;
+                position: relative;
+            }
+
+            .viewport {
+                height: 100%;
+                overflow-x: hidden;
+                overflow-y: auto;
+                position: relative;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .star {
+                height: 90vh;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            .solid {
+                z-index: 1;
+                position: relative;
+                height: 700px;
+                color: #333;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                flex-wrap: wrap;
+                background-color: #fff;
+                padding: 0 5vw;
+            }
+
+            .venue-place {
+                margin-top: 20px;
+                padding: 0 5vw;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header {
+                font-family: "BrandonGrotesque", sans-serif;
+                font-weight: normal;
+                font-size: 0.75rem;
+                line-height: 1em;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                padding: 1rem 2rem;
+            }
+
+            header a {
+                text-decoration: none;
+                color: rgba(0, 0, 0, 0.68);
+                text-align: center;
+                padding: 1rem;
+                transition: color 150ms ease-in;
+            }
+
+            header:hover a {
+                color: rgba(0, 0, 0, 0.3);
+            }
+
+            header a:hover {
+                color: rgba(0, 0, 0, 0.68) !important;
+            }
+
+            @media screen and (min-width: 768px) {
+
+                header {
+                    justify-content: flex-end;
+                }
+
+                h1.porto {
+                    font-size: 120px;
+                }
+                .solid {
+                    height: 50vh;
+                    flex-direction: row;
+                    justify-content: space-around;
+                }
+                .venue-place {
+                    margin: 0;
+                }
+            }
+
+            .button {
+                border-radius: 3px;
+                color: #0d0d0d;
+                background-color: transparent;
+                -webkit-transition: 0.1s background-color linear, 0.1s color linear;
+                -moz-transition: 0.1s background-color linear, 0.1s color linear;
+                -o-transition: 0.1s background-color linear, 0.1s color linear;
+                transition: 0.1s background-color linear, 0.1s color linear;
+                padding: 13px 26px;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+                font-size: 12px;
+                font-style: normal;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 2px solid #0d0d0d;
+                margin-top: 10px;
+                width: 100px;
+            }
+
+            .button:hover {
+                background-color: #0d0d0d;
+                color: #fff;
+            }
+        </style>
+        <script src="scripts/parallax.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
             initializeParallax(document.querySelector(".viewport"));
-        });
-    </script>
-</head>
+          });
+        </script>
+    </head>
 
-<body>
+    <body>
 
-<header>
-    <a href="/">A nossa história</a>
-    <a href="/venue.html">Quando & Onde</a>
-    <a href="/rsvp.html">RSVP</a>
-</header>
+        <header>
+            <a href="/">A nossa história</a>
+            <a href="/venue.html">Quando & Onde</a>
+            <a href="/rsvp.html">RSVP</a>
+        </header>
 
-<div class="viewport">
+        <div class="viewport">
 
-    <div>
-        <!-- Specifying a parallax rate of 0.3 will slide the image at that proportion of the scroll speed. -->
-        <div class="parallax header" style="background-image: url('images/miranda.jpg');" parallax="0.3"></div>
+            <div>
+                <!-- Specifying a parallax rate of 0.3 will slide the image at that proportion of the scroll speed. -->
+                <div class="parallax header" style="background-image: url('images/miranda.jpg');" parallax="0.3"></div>
 
 
-        <div class="scene header">
-            <h1>19 de Maio, 2018</h1>
-        </div>
+                <div class="scene header">
+                    <h1>19 de Maio, 2018</h1>
+                </div>
 
-        <div class="scene star" style="background: url(images/porto.jpg) center;background-size: cover;">
-            <h1 class="porto">Porto</h1>
-        </div>
-        <!-- When a rate isn't specified, it will be calculated such that the image always fills the space between the
-               element before it and the next element with the "parallax-cover" attribute. -->
-        <div class="parallax solid" parallax-cover>
-            <div class="venue-place">
-                <h2>Cerimónia</h2>
-                12:00
+                <div class="scene star" style="background: url(images/porto.jpg) center;background-size: cover;">
+                    <h1 class="porto">Porto</h1>
+                </div>
+                <!-- When a rate isn't specified, it will be calculated such that the image always fills the space between the
+                       element before it and the next element with the "parallax-cover" attribute. -->
+                <div class="parallax solid" parallax-cover>
+                    <div class="venue-place">
+                        <h2>Cerimónia</h2>
+                        12:00
 
-                <p>
-                    <em>Igreja da Lapa</em><br/>
-                    Largo da Lapa 9<br/>
-                    Porto, Portugal
-                </p>
+                        <p>
+                            <em>Igreja da Lapa</em><br />
+                            Largo da Lapa 9<br />
+                            Porto, Portugal
+                        </p>
+
+                        <a class="button"
+                           target="_blank"
+                           href="https://www.google.pt/maps/place/Igreja+da+lapa,+Largo+da+Lapa+9,+Porto">MAPA</a>
+                    </div>
+                    <div class="venue-place">
+                        <h2>Copo-de-água</h2>
+                        14:30
+                        <p>
+                            <em>Casa do Ribeirinho</em><br />
+                            R. Dr. José Ventura 31<br />
+                            Matosinhos, Portugal
+                        </p>
+                        <a class="button"
+                           target="_blank"
+                           href="https://www.google.pt/maps/place/Casa+do+Ribeirinho,+R.+Dr.+José+Ventura+31,+Matosinhos/">MAPA</a>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="venue-place">
-                <h2>Copo-de-água</h2>
-                14:30
-                <p>
-                    <em>Casa do Ribeirinho</em><br/>
-                    R. Dr. José Ventura 31<br/>
-                    Matosinhos, Portugal
-                </p>
-            </div>
         </div>
-
-
-    </div>
-</div>
-</body>
+    </body>
 </html>
