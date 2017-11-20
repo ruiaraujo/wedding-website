@@ -89,6 +89,10 @@
             height: calc(100vh + 76px);
         }
 
+        .header-image {
+            background-image: url('../images-mobile/athens.jpg');
+        }
+
         .parallax.header {
             margin-bottom: calc(-100vh - 76px);
         }
@@ -153,6 +157,10 @@
             header {
                 justify-content: flex-end;
             }
+
+            .header-image {
+                background-image: url('../images/athens.jpg');
+            }
         }
     </style>
     <script src="../scripts/parallax.js"></script>
@@ -175,7 +183,7 @@
 
     <div>
         <!-- Specifying a parallax rate of 0.3 will slide the image at that proportion of the scroll speed. -->
-        <div class="parallax header" style="background-image: url('../images/athens.jpg');" parallax="0.3"></div>
+        <div class="parallax header header-image" parallax="0.3"></div>
 
 
         <div class="scene header">

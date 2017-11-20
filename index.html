@@ -62,7 +62,7 @@
         }
 
         h1 {
-            font-size: 100px;
+            font-size: 50px;
             text-transform: uppercase;
         }
 
@@ -91,6 +91,10 @@
             height: calc(100vh + 76px);
         }
 
+        .header-image {
+            background-image: url('images-mobile/athens2.jpg');
+        }
+
         .parallax.header {
             margin-bottom: calc(-100vh - 76px);
         }
@@ -109,7 +113,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .woods {
+        .text-container {
             padding: 0;
             display: flex;
             align-items: center;
@@ -156,10 +160,39 @@
         header a:hover {
             color: rgba(0, 0, 0, 0.68) !important;
         }
+
+        .ring {
+            background-image: url(images-mobile/ring.jpg);
+        }
+
+        .last-cover {
+            background: url(images-mobile/venice.jpg) center;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+        }
+
         @media screen and (min-width: 768px) {
 
             header {
                 justify-content: flex-end;
+            }
+
+
+            h1 {
+                font-size: 100px;
+            }
+
+            .header-image {
+                background-image: url(images/athens2.jpg);
+            }
+
+            .ring {
+                background-image: url(images/ring.jpg);
+            }
+
+            .last-cover {
+                background: url(images/venice.jpg) center;
             }
         }
     </style>
@@ -183,7 +216,7 @@
 
     <div>
         <!-- Specifying a parallax rate of 0.3 will slide the image at that proportion of the scroll speed. -->
-        <div class="parallax header" style="background-image: url('images/athens2.jpg');" parallax="0.3"></div>
+        <div class="parallax header header-image" parallax="0.3"></div>
 
 
         <div class="scene header">
@@ -193,25 +226,25 @@
         <div class="scene solid star">
             <h2>Conhecemo-nos na Serenata em Maio de 2009...</h2>
 
-            <p>Era o nosso primeiro ano de universidade e estávamos a criar o fa moso cordão de Engenharia na Serenata e
-                foi aí que começamos a falar um com o outro e gostamos muito. Após este dia encontramo-nos várias vezes,
-                ficamos grandes amigos e apaixonamo-nos. No final do ano, no dia 2 de Dezembro, ambos com 19 anos,
-                começamos a namorar. Após 8 anos de nos conhecermos e mais de 7 anos de namoro decidimos casar e passar
-                o resto das nossas vida juntos. =)
+            <p>Era o nosso primeiro ano de universidade e estávamos a criar o famoso cordão de Engenharia na Serenata e
+                foi aí que falamos pela primeira vez.
+                Após este dia encontramo-nos várias vezes, ficamos grandes amigos e apaixonamo-nos. No final do ano,
+                no dia 2 de Dezembro, ambos com 19 anos, começamos a namorar. Após 8 anos de nos conhecermos e mais de
+                7 anos de namoro decidimos casar e passar o resto das nossas vida juntos. =)
+
             </p>
         </div>
         <!-- When a rate isn't specified, it will be calculated such that the image always fills the space between the
                element before it and the next element with the "parallax-cover" attribute. -->
-        <div class="parallax" style="background-image: url('images/ring.jpg');" parallax></div>
+        <div class="parallax ring" parallax></div>
 
 
-        <div class="scene woods">
+        <div class="scene text-container">
             <h1>Ela aceitou</h1>
         </div>
 
-        <div class="scene solid woods" parallax-cover>
-            <div style="background: url(images/venice.jpg) center;background-size: cover; width: 100%;height: 100%;">
-                <h2>Test</h2>
+        <div class="scene solid text-container" parallax-cover>
+            <div class="last-cover">
             </div>
         </div>
     </div>
